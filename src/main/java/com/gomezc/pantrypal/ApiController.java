@@ -1,16 +1,21 @@
 package com.gomezc.pantrypal;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api")
 public class ApiController {
-    @Value("${api.key}")
-    private String apiKey;
 
-    @GetMapping("/")
-    public String getApiKey() {
-        return apiKey;
+    @Autowired
+    private final ApiService apiService;
+
+    public ApiController(ApiService apiService) {
+        this.apiService = apiService;
+    }
+
+    @GetMapping("/nutrition")
+    public String getNutritionData(@RequestParam String query) {
+        return apiService.fetchNutritionData(query);
     }
 }
