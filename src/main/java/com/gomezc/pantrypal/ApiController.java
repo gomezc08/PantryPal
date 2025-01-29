@@ -14,6 +14,11 @@ public class ApiController {
         this.apiService = apiService;
     }
 
+    // @GetMapping("/")
+    // public String home() {
+    //     return "index";
+    // }
+
     @GetMapping("/nutrition")
     public String getNutritionData(@RequestParam String query) {
         return apiService.fetchNutritionData(query);

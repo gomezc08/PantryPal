@@ -24,6 +24,10 @@ public class ApiService {
         this.restTemplate = restTemplate;
     }
 
+    /*
+    Gets detailed nutrient breakdown of any natural language text. 
+    It can be used in combination with the /search/instant endpoint to provide nutrition information for common foods.	 
+    */
     public String fetchNutritionData(String query) {
         try {
             // Nutritionix API endpoint
@@ -54,4 +58,9 @@ public class ApiService {
             return "Error: " + e.getMessage(); // Return a user-friendly error message
         }
     }
+
+    /* 
+    Look for nutrition information of any branded food item by the UPC scanned from a branded grocery product or the “nix_item_id” 
+    (returned from the search/instant endpoint).	
+    */
 }
