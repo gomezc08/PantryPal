@@ -1,7 +1,10 @@
 package com.gomezc.pantrypal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.apache.catalina.connector.Response;
 
 import java.util.Map;
 
@@ -26,12 +29,19 @@ public class ApiController {
         return apiService.fetchNutritionData(query);
     }
 
-    // qrData : decodeText
+    // takes in the scanned data and sends it to the api service to fetch branded nutrition data.
+    // then adds to our db.
     @PostMapping("/scan")
-    public void handleQrScan(@RequestBody Map<String, String> qrData) {        
+    public void handleQrScan(@RequestBody Map<String, String> qrData) {    
         String data = qrData.get("qrData");
         log.info("Received QR Data: " + data);
-        // Process the data or log it as required
-        //return ResponseEntity.ok("Received: " + data);
+        String s = apiService.fetchBrandedNutritionData(data);
+        System.out.println(s);
     }
+
+    // handle qr scanned data (look it up using api using fetchBrandedNutritionData).
+    // @GetMapping("/scan")
+    // public String getBrandedNutritionData(@RequestParam String query) {
+    //     return apiService.fetchBrandedNutritionData(query);
+    // }
 }
