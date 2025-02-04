@@ -98,14 +98,4 @@ public class ApiService {
             return "Error: " + e.getMessage(); // Return a user-friendly error message
         }
     }
-
-    /*
-    Adds a food item to the user's pantry.  
-    */
-    public void addFoodItem(Food food) {
-        // Add the food item to the database
-        logger.info("Adding food item to the pantry: {}", food);
-        
-
-    }
 }

@@ -27,12 +27,18 @@ public class ApiController {
     @Autowired
     private final ApiService apiService;
 
+    private final SpringCRUD springCRUD;
+
     @Autowired
     private ObjectMapper mapper;
+
+    private FoodController foodController;
     
-    public ApiController(ApiService apiService) {
+    public ApiController(ApiService apiService, SpringCRUD springCRUD) {
         this.apiService = apiService;
         this.mapper = new ObjectMapper();
+        this.springCRUD = springCRUD;
+        this.foodController = new FoodController(springCRUD);
     }
 
     @GetMapping("/nutrition")
@@ -78,7 +84,7 @@ public class ApiController {
             
             // add to db.
             Food food = new Food(fName, brandName, calories, fat, carbs, protein, sodium, sugar, potassium);
-            apiService.addFoodItem(food);
+            foodController.addFood(food);
         } 
         catch (Exception e) {
             log.error("Error parsing JSON: " + e);

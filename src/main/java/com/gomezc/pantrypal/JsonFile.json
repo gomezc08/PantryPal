@@ -1,76 +1,73 @@
 {
   "foods" : [ {
-    "food_name" : "Cookies & Cream Oats",
-    "brand_name" : "Oats Overnight",
-    "serving_qty" : 1,
-    "serving_unit" : "pouch",
-    "serving_weight_grams" : 77,
-    "nf_metric_qty" : 77,
+    "food_name" : "Grated Cheese, Parmesan",
+    "brand_name" : "Kraft",
+    "serving_qty" : 2,
+    "serving_unit" : "tsp",
+    "serving_weight_grams" : 5,
+    "nf_metric_qty" : 5,
     "nf_metric_uom" : "g",
-    "nf_calories" : 280,
-    "nf_total_fat" : 6,
-    "nf_saturated_fat" : 1.5,
-    "nf_cholesterol" : 35,
-    "nf_sodium" : 370,
-    "nf_total_carbohydrate" : 41,
-    "nf_dietary_fiber" : 6,
-    "nf_sugars" : 7,
-    "nf_protein" : 20,
-    "nf_potassium" : 230,
+    "nf_calories" : 20,
+    "nf_total_fat" : 1.5,
+    "nf_saturated_fat" : 1,
+    "nf_cholesterol" : 2.5,
+    "nf_sodium" : 80,
+    "nf_total_carbohydrate" : 0,
+    "nf_dietary_fiber" : 0,
+    "nf_sugars" : 0,
+    "nf_protein" : 2,
+    "nf_potassium" : 0,
     "nf_p" : null,
     "full_nutrients" : [ {
       "attr_id" : 203,
-      "value" : 20
+      "value" : 2
     }, {
       "attr_id" : 204,
-      "value" : 6
+      "value" : 1.5
     }, {
       "attr_id" : 205,
-      "value" : 41
+      "value" : 0
     }, {
       "attr_id" : 208,
-      "value" : 280
+      "value" : 20
     }, {
       "attr_id" : 269,
-      "value" : 7
+      "value" : 0
     }, {
       "attr_id" : 291,
-      "value" : 6
+      "value" : 0
     }, {
       "attr_id" : 301,
-      "value" : 180
+      "value" : 50
     }, {
       "attr_id" : 303,
-      "value" : 2.8
+      "value" : 0
     }, {
       "attr_id" : 306,
-      "value" : 230
+      "value" : 0
     }, {
       "attr_id" : 307,
-      "value" : 370
-    }, {
-      "attr_id" : 324,
-      "value" : 0
+      "value" : 80
     }, {
       "attr_id" : 328,
       "value" : 0
     }, {
       "attr_id" : 539,
-      "value" : 4
+      "value" : 0
     }, {
       "attr_id" : 601,
-      "value" : 35
+      "value" : 2.5
     }, {
       "attr_id" : 605,
       "value" : 0
     }, {
       "attr_id" : 606,
-      "value" : 1.5
+      "value" : 1
     } ],
-    "nix_brand_name" : "Oats Overnight",
-    "nix_brand_id" : "58a6a15db1790e3550832ddc",
-    "nix_item_name" : "Cookies & Cream Oats",
-    "nix_item_id" : "648c43dc72495000089bdf96",
+    "nix_brand_name" : "Kraft",
+    "nix_brand_id" : "51db37b4176fe9790a8987c4",
+    "nix_item_name" : "Grated Cheese, Parmesan",
+    "nix_item_id" : "51d2fd8dcc9bff111580eada",
     "metadata" : { },
     "source" : 8,
     "ndb_no" : null,
@@ -78,7 +75,7 @@
     "lat" : null,
     "lng" : null,
     "photo" : {
-      "thumb" : "https://nutritionix-api.s3.amazonaws.com/674af24e744a11000954b0b4.jpeg",
+      "thumb" : "https://assets.syndigo.com/be903aa6-ea2f-4349-8967-566942eade52",
       "highres" : null,
       "is_user_uploaded" : false
     },
@@ -86,7 +83,7 @@
     "class_code" : null,
     "brick_code" : null,
     "tag_id" : null,
-    "updated_at" : "2024-11-30T11:09:01+00:00",
-    "nf_ingredient_statement" : null
+    "updated_at" : "2024-10-09T08:04:01+00:00",
+    "nf_ingredient_statement" : "Parmesan Cheese (Pasteurized Part-Skim Milk, Cheese Culture, Salt, Enzymes), Cellulose Powder, Potassium Sorbate to Protect Flavor."
   } ]
 }
