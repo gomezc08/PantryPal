@@ -3,6 +3,7 @@ package com.gomezc.pantrypal;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -96,5 +97,13 @@ public class ApiService {
             logger.error("Error fetching branded nutrition data: {}", e.getMessage());
             return "Error: " + e.getMessage(); // Return a user-friendly error message
         }
+    }
+
+    /*
+    Adds a food item to the user's pantry.  
+    */
+    public void addFoodItem(Food food) {
+        // Add the food item to the database
+        logger.info("Adding food item to the pantry: {}", food);
     }
 }

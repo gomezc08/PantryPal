@@ -4,8 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.apache.catalina.connector.Response;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -18,10 +26,14 @@ public class ApiController {
     
     @Autowired
     private final ApiService apiService;
+
+    @Autowired
+    private ObjectMapper mapper;
     
 
     public ApiController(ApiService apiService) {
         this.apiService = apiService;
+        this.mapper = new ObjectMapper();
     }
 
     @GetMapping("/nutrition")
@@ -36,12 +48,24 @@ public class ApiController {
         String data = qrData.get("qrData");
         log.info("Received QR Data: " + data);
         String s = apiService.fetchBrandedNutritionData(data);
-        System.out.println(s);
-    }
+        try {
+            JsonNode node = mapper.readTree(s);
+            log.info("Received Nutrition Data: " + node);
+            Path path = Paths.get("src\\main\\java\\com\\gomezc\\pantrypal\\JsonFile.json");
+            Files.write(path, s.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 
-    // handle qr scanned data (look it up using api using fetchBrandedNutritionData).
-    // @GetMapping("/scan")
-    // public String getBrandedNutritionData(@RequestParam String query) {
-    //     return apiService.fetchBrandedNutritionData(query);
-    // }
+            // parse json.
+            String fName = node.get("foods").get(0).get("food_name").asText();
+            log.info("Food Name: " + fName);
+
+            String brandName = node.get("foods").get(0).get("brand_name").asText();
+            log.info("Brand Name: " + brandName);
+
+            // add to db.
+            //apiService.addFoodItem(null);
+        } 
+        catch (Exception e) {
+            log.error("Error parsing JSON: " + e);
+        }
+    }
 }
