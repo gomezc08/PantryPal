@@ -39,5 +39,75 @@ public class Food {
     }
 
     // Getters and setters
-    // ... add getters and setters for all fields
+    public String getfName() {
+        return fName;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public String getfBrand() {
+        return fBrand;
+    }
+
+    public void setfBrand(String fBrand) {
+        this.fBrand = fBrand;
+    }
+
+    public Integer getfCalories() {
+        return fCalories;
+    }  
+
+    public void setfCalories(Integer fCalories) {
+        this.fCalories = fCalories;
+    }
+
+    public Integer getfFat() {
+        return fFat;
+    }
+
+    public void setfFat(Integer fFat) {
+        this.fFat = fFat;
+    }
+
+    public Integer getfCarbs() {
+        return fCarbs;
+    }
+
+    public void setfCarbs(Integer fCarbs) {
+        this.fCarbs = fCarbs;
+    }
+
+    public Integer getfProtein() {
+        return fProtein;
+    }
+
+    public void setfProtein(Integer fProtein) {
+        this.fProtein = fProtein;
+    }
+
+    public Integer getfSodium() {
+        return fSodium;
+    }
+
+    public void setfSodium(Integer fSodium) {
+        this.fSodium = fSodium;
+    }
+
+    public Integer getfSugar() {
+        return fSugar;
+    }
+
+    public void setfSugar(Integer fSugar) {
+        this.fSugar = fSugar;
+    }
+
+    public Integer getfPotassium() {
+        return fPotassium;
+    }
+
+    public void setfPotassium(Integer fPotassium) {
+        this.fPotassium = fPotassium;
+    }
 }
