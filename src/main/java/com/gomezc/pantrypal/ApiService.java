@@ -5,8 +5,6 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,11 +20,9 @@ public class ApiService {
     private String appKey;
 
     private final RestTemplate restTemplate;
-    private final ObjectMapper mapper;
 
-    public ApiService(RestTemplate restTemplate, ObjectMapper mapper) {
+    public ApiService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-        this.mapper = mapper;
     }
 
     /*
