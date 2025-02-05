@@ -30,12 +30,14 @@ public class FoodController {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
+    // GET - Get all items in the pantry.
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
     public List<Food> getAllItems() {
         return foodJdbc.getAllItems();
     }
 
+    // PUT - Add scanned food to the pantry (grabs data from JSON file).
     @PutMapping("/{food_name}")
     @ResponseStatus(HttpStatus.CREATED)
     public void addFood() {
@@ -44,11 +46,19 @@ public class FoodController {
             // Loop through each FoodItem object and process it
             for (FoodItem item : data.getFoods()) {
                 log.info("Adding item to pantry: " + item);
-                foodJdbc.addFood(item.getFoodName(), item.getFoodBrand(), item.getFoodCalories(), item.getFoodFat(), item.getFoodCarbs(), item.getFoodProtein(), item.getFoodSodium(), item.getFoodSugar());
+                foodJdbc.addFood(item.getFoodName(), item.getFoodBrand(), item.getFoodCalories(), item.getFoodFat(), item.getFoodCarbs(), item.getFoodProtein(), item.getFoodSodium(), item.getFoodSugar(), 1);
             }
         } 
         catch (Exception e) {
             log.error("Error parsing JSON: ", e);
         }
+    }
+
+    // UPDATE - Updates quantity of food item in pantry. 
+    // NOT WORKING.
+    @PutMapping("/{food_name}/{quantity}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateQuantity(int quantity) {
+        foodJdbc.updateQuantity("food_name", quantity);
     }
 }

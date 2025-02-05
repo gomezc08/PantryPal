@@ -19,6 +19,7 @@ public class Food {
     private Integer fSodium;
     private Integer fSugar;
     private Integer fPotassium;
+    private Integer fQuantity;
 
     // Default constructor required by JPA
     public Food() {}
@@ -26,7 +27,7 @@ public class Food {
     // Constructor with all fields
     public Food(String fName, String fBrand, Integer fCalories, Integer fFat, 
                 Integer fCarbs, Integer fProtein, Integer fSodium, Integer fSugar, 
-                Integer fPotassium) {
+                Integer fPotassium, Integer fQuantity) {
         this.fName = fName;
         this.fBrand = fBrand;
         this.fCalories = fCalories;
@@ -36,6 +37,7 @@ public class Food {
         this.fSodium = fSodium;
         this.fSugar = fSugar;
         this.fPotassium = fPotassium;
+        this.fQuantity = fQuantity;
     }
 
     // Getters and setters
@@ -109,5 +111,13 @@ public class Food {
 
     public void setfPotassium(Integer fPotassium) {
         this.fPotassium = fPotassium;
+    }
+
+    public Integer getfQuantity() {
+        return fQuantity;
+    }
+
+    public void setfQuantity(Integer fQuantity) {
+        this.fQuantity = fQuantity;
     }
 }

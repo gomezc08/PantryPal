@@ -20,10 +20,16 @@ public class FoodJdbc {
             .list();
     }
 
-    public void addFood(String foodName, String foodBrand, Integer foodCalories, Integer foodFat, Integer foodCarbs, Integer foodProtein, Integer foodSodium, Integer foodSugar) {
+    public void addFood(String foodName, String foodBrand, Integer foodCalories, Integer foodFat, Integer foodCarbs, Integer foodProtein, Integer foodSodium, Integer foodSugar, Integer foodQuantity) {
         // add to db.
-        jdbcClient.sql("INSERT INTO PantryPal (fName, fBrand, fCalories, fFat, fCarbs, fProtein, fSodium, fSugar) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")
-            .params(List.of(foodName, foodBrand, foodCalories, foodFat, foodCarbs, foodProtein, foodSodium, foodSugar))
+        jdbcClient.sql("INSERT INTO PantryPal (fName, fBrand, fCalories, fFat, fCarbs, fProtein, fSodium, fSugar, fQuantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")
+            .params(List.of(foodName, foodBrand, foodCalories, foodFat, foodCarbs, foodProtein, foodSodium, foodSugar, foodQuantity))
+            .update();
+    }
+
+    public void updateQuantity(String foodName, Integer foodQuantity) {
+        jdbcClient.sql("UPDATE PantryPal SET fQuantity = ? WHERE fName = ?")
+            .params(List.of(foodQuantity, foodName))
             .update();
     }
 }

@@ -19,6 +19,7 @@ public class FoodItem {
     private Integer foodSodium;
     @JsonProperty("nf_sugars")
     private Integer foodSugar;
+    private Integer foodQuantity;
 
     // Getters and setters.
     public String getFoodName() {
@@ -83,5 +84,13 @@ public class FoodItem {
 
     public void setFoodSugar(Integer foodSugar) {
         this.foodSugar = foodSugar;
+    }
+
+    public Integer getFoodQuantity() {
+        return foodQuantity;
+    }
+
+    public void setFoodQuantity(Integer foodQuantity) {
+        this.foodQuantity = foodQuantity;
     }
 }
