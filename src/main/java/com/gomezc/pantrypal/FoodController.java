@@ -1,6 +1,7 @@
 package com.gomezc.pantrypal;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -34,7 +35,10 @@ public class FoodController {
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
     public List<Food> getAllItems() {
-        return foodJdbc.getAllItems();
+        List<Food> f = foodJdbc.getAllItems();
+        log.info("Retrieved all items from pantry.");
+        return f;
+
     }
 
     // PUT - Add scanned food to the pantry (grabs data from JSON file).
@@ -45,20 +49,23 @@ public class FoodController {
             this.data = mapper.readValue(jsonFile, JsonElements.class);
             // Loop through each FoodItem object and process it
             for (FoodItem item : data.getFoods()) {
-                log.info("Adding item to pantry: " + item);
                 foodJdbc.addFood(item.getFoodName(), item.getFoodBrand(), item.getFoodCalories(), item.getFoodFat(), item.getFoodCarbs(), item.getFoodProtein(), item.getFoodSodium(), item.getFoodSugar(), 1);
             }
         } 
         catch (Exception e) {
             log.error("Error parsing JSON: ", e);
         }
+
+        log.info("Added food item to pantry.");
     }
 
     // UPDATE - Updates quantity of food item in pantry. 
     // NOT WORKING.
     @PutMapping("/{food_name}/{quantity}")
     @ResponseStatus(HttpStatus.OK)
-    public void updateQuantity(int quantity) {
-        foodJdbc.updateQuantity("food_name", quantity);
+    public void updateQuantity(@PathVariable ("food_name") String food, @PathVariable int quantity) {
+        log.info("Updating quantity of " + food + " to " + quantity);
+        foodJdbc.updateQuantity(food, quantity);
+        log.info("Updated quantity of " + food + " to " + quantity);
     }
 }

@@ -28,8 +28,15 @@ public class FoodJdbc {
     }
 
     public void updateQuantity(String foodName, Integer foodQuantity) {
-        jdbcClient.sql("UPDATE PantryPal SET fQuantity = ? WHERE fName = ?")
-            .params(List.of(foodQuantity, foodName))
-            .update();
+        try {
+            jdbcClient.sql("UPDATE PantryPal SET fQuantity = ? WHERE fName = ?")
+                      .params(List.of(foodQuantity, foodName))
+                      .update();
+        } 
+        
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }
 }
