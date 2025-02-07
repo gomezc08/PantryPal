@@ -1,5 +1,6 @@
 package com.gomezc.pantrypal;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -60,12 +61,20 @@ public class FoodController {
     }
 
     // UPDATE - Updates quantity of food item in pantry. 
-    // NOT WORKING.
     @PutMapping("/{food_name}/{quantity}")
     @ResponseStatus(HttpStatus.OK)
     public void updateQuantity(@PathVariable ("food_name") String food, @PathVariable int quantity) {
         log.info("Updating quantity of " + food + " to " + quantity);
         foodJdbc.updateQuantity(food, quantity);
         log.info("Updated quantity of " + food + " to " + quantity);
+    }
+
+    // DELETE - deletes a food item.
+    @DeleteMapping("/delete/{food_name}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteFood(@PathVariable ("food_name") String food) {
+        log.info("Deleting " + food + " from pantry.");
+        foodJdbc.deleteFood(food);
+        log.info("Deleted " + food + " from pantry.");
     }
 }

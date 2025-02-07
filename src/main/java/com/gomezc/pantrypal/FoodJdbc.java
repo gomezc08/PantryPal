@@ -39,4 +39,10 @@ public class FoodJdbc {
         }
         
     }
+
+    public void deleteFood(String foodName) {
+        jdbcClient.sql("DELETE FROM PantryPal WHERE fName = ?")
+            .params(List.of(foodName))
+            .update();
+    }
 }
