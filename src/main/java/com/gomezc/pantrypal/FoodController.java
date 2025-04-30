@@ -53,7 +53,7 @@ public class FoodController {
             this.data = mapper.readValue(jsonFile, JsonElements.class);
             // Loop through each FoodItem object and process it
             for (FoodItem item : data.getFoods()) {
-                foodJdbc.addFood(item.getFoodName(), item.getFoodBrand(), item.getFoodCalories(), item.getFoodFat(), item.getFoodCarbs(), item.getFoodProtein(), item.getFoodSodium(), item.getFoodSugar(), 1);
+                foodJdbc.addFood(item.getFoodName(), item.getFoodBrand(), item.getFoodCalories(), item.getFoodFat(), item.getFoodCarbs(), item.getFoodProtein(), item.getFoodSodium(), item.getFoodSugar(), item.getFoodServingQty(), item.getFoodServingUnit());
             }
         } 
         catch (Exception e) {

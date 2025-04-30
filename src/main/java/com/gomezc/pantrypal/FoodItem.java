@@ -20,7 +20,10 @@ public class FoodItem {
     private Integer foodSodium;
     @JsonProperty("nf_sugars")
     private Integer foodSugar;
-    private Integer foodQuantity;
+    @JsonProperty("serving_qty")
+    private Integer foodServingQty;
+    @JsonProperty("serving_unit")
+    private String foodServingUnit;
 
     // Getters and setters.
     public String getFoodName() {
@@ -87,11 +90,18 @@ public class FoodItem {
         this.foodSugar = foodSugar;
     }
 
-    public Integer getFoodQuantity() {
-        return foodQuantity;
+    public Integer getFoodServingQty() {
+        return foodServingQty;
     }
 
-    public void setFoodQuantity(Integer foodQuantity) {
-        this.foodQuantity = foodQuantity;
+    public void setFoodServingQty(Integer foodServingQty) {
+        this.foodServingQty = foodServingQty;
+    }
+    public String getFoodServingUnit() {
+        return foodServingUnit;
+    }
+
+    public void setFoodServingUnit(String foodServingUnit) {
+        this.foodServingUnit = foodServingUnit;
     }
 }
