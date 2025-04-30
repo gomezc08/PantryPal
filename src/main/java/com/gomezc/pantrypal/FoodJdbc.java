@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
-
+// Repository for food items; used to interact DIRECTLY  with the database.
+// FoodController uses JDBC to interact with the database.
 @Repository
 public class FoodJdbc {
     private final JdbcClient jdbcClient;

@@ -2,6 +2,7 @@ package com.gomezc.pantrypal;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+// Class for food items; used to parse JSON data.
 public class FoodItem {
     @JsonProperty("food_name")
     private String foodName;

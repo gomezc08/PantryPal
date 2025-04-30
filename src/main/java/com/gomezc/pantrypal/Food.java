@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotEmpty;
 
+// Class for food items; used to store data in database.
 @Entity
 public class Food {
     @Id

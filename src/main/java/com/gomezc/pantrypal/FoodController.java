@@ -17,6 +17,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.util.List;
 
+// Controller for food items; used to handle HTTP requests; REST API.
+// Handles GET, PUT, DELETE requests.
+// Uses the FoodJdbc to interact with the database.
 @RestController
 @RequestMapping("/food")
 public class FoodController {
