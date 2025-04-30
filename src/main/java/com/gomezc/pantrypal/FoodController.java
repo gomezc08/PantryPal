@@ -42,7 +42,15 @@ public class FoodController {
         List<Food> f = foodJdbc.getAllItems();
         log.info("Retrieved all items from pantry.");
         return f;
+    }
 
+    // GET - Get all items in the pantry by category.
+    @GetMapping("/{category}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Food> getCategoryItems(@PathVariable("category") String category) {
+        List<Food> f = foodJdbc.getCategoryItems(category);
+        log.info("Retrieved items from pantry by category: " + category);
+        return f;
     }
 
     // PUT - Add scanned food to the pantry (grabs data from JSON file).
@@ -68,7 +76,7 @@ public class FoodController {
     @ResponseStatus(HttpStatus.OK)
     public void updateQuantity(@PathVariable ("food_name") String food, @PathVariable int quantity) {
         log.info("Updating quantity of " + food + " to " + quantity);
-        foodJdbc.updateQuantity(food, quantity);
+        foodJdbc.updatePantryQuantity(food, quantity);
         log.info("Updated quantity of " + food + " to " + quantity);
     }
 
