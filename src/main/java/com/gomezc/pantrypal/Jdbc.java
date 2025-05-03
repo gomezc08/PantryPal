@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 // Repository for food items; used to interact DIRECTLY  with the database.
 // FoodController uses JDBC to interact with the database.
 @Repository
-public class FoodJdbc {
+public class Jdbc {
     private final JdbcClient jdbcClient;
 
-    public FoodJdbc(JdbcClient jdbcClient) {
+    public Jdbc(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
     }
 

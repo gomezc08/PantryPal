@@ -6,13 +6,8 @@ import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class User {
-
-    @NotEmpty
     private String uFirstName;
-
-    @NotEmpty
     private String uLastName;
-
     @Id
     @NotEmpty
     private String uEmail;
@@ -20,9 +15,7 @@ public class User {
     @NotEmpty
     private String uPassword;
 
-    @NotEmpty
     private String uPhone;
-
     private Integer uHeight;
     private Integer uWeight;
     private Integer uAge;

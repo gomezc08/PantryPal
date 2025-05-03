@@ -27,11 +27,11 @@ CREATE TABLE IF NOT EXISTS FoodItem (
 );
 
 CREATE TABLE IF NOT EXISTS User (
-    uFirstName VARCHAR(30) NOT NULL,
-    uLastName VARCHAR(30) NOT NULL,
+    uFirstName VARCHAR(30),
+    uLastName VARCHAR(30),
     uEmail VARCHAR(30) NOT NULL,
     uPassword VARCHAR(30) NOT NULL,
-    uPhone VARCHAR(30) NOT NULL,
+    uPhone VARCHAR(30),
     uHeight INT,
     uWeight INT,
     uAge INT,

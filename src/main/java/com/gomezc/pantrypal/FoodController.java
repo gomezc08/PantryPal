@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
@@ -23,13 +24,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/food")
 public class FoodController {
-    private final FoodJdbc foodJdbc;
+    private final Jdbc foodJdbc;
     private static final Logger log = LoggerFactory.getLogger(FoodController.class);
     private ObjectMapper mapper = new ObjectMapper();
     private File jsonFile;
     private JsonElements data;
 
-    public FoodController(FoodJdbc foodJdbc) {
+    public FoodController(Jdbc foodJdbc) {
         this.foodJdbc = foodJdbc;
         this.jsonFile = new File("src\\main\\java\\com\\gomezc\\pantrypal\\JsonFile.json");
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
