@@ -21,6 +21,32 @@ public class UserController {
         this.jdbc = jdbc;
     }
 
+    // starter page.
+    @GetMapping("/")
+    public String loginScreen() {
+        log.info("Login Screen"); 
+        return "login.html";
+    }
+
+    // Login page.
+    @PostMapping("/home")
+    public String login(@RequestParam String email, @RequestParam String password) {
+        log.info("Attempting to Login");
+        User user = jdbc.getUser(email);
+
+        if (user == null || !user.getuPassword().equals(password)) {
+            return "redirect:/?error=true";
+        }
+
+        return "redirect:/home";
+    }
+
+    @GetMapping("/home")
+    public String homeScreen() {
+        return "home.html";
+    }
+
+    // Sign up page.
     @PostMapping("/register")
     public String register(@RequestParam String firstName,
                                            @RequestParam String lastName,
@@ -51,6 +77,12 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/signup")
+    public String signupPage() {
+        return "signup.html"; 
+    }
+
+    // extra.
     @GetMapping("/user")
     public ResponseEntity<User> getUser(@RequestParam String email) {
         User user = jdbc.getUser(email);
