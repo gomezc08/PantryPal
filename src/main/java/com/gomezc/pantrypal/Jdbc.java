@@ -45,7 +45,7 @@ public class Jdbc {
     }
 
     public void addUser(String fName, String lName, String email, String password, String phone, int h, int w, int age, String gender) {
-        jdbcClient.sql("INSERT INTO Users (uFirstName, uLastName, uEmail, uPassword, uPhone, uHeight, uWeight, uAge, uGender) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")
+        jdbcClient.sql("INSERT INTO User (uFirstName, uLastName, uEmail, uPassword, uPhone, uHeight, uWeight, uAge, uGender) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")
             .params(List.of(fName, lName, email, password, phone, h, w, age, gender))
             .update(); 
     }
