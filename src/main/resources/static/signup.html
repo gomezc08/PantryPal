@@ -11,12 +11,12 @@
         <h1>PantryPal</h1>
         <h3>Enter your account details</h3>
 
-        <form id = "signup-form">
-            <label for="fName">First Name:</label>
-            <input type="fName" id="fName" name="fName" placeholder="Enter your First Name" required>
+        <form action="/register" method="post">
+            <label for="firstName">First Name:</label>
+            <input type="firstName" id="firstName" name="firstName" placeholder="Enter your First Name" required>
             
-            <label for="lName">Last Name:</label>
-            <input type="lName" id="lName" name="lName" placeholder="Enter your Last Name" required>
+            <label for="lastName">Last Name:</label>
+            <input type="lastName" id="lastName" name="lastName" placeholder="Enter your Last Name" required>
             
             <label for="email">Username/Email:</label>
             <input type="email" id="email" name="email" placeholder="Enter your Email" required> 
@@ -25,12 +25,9 @@
             <input type="password" id="password" name="password" placeholder="Enter your Password" required>
 
             <div class="wrap">
-                <button type="submit">
-                    Submit
-                </button>
+                <button type="submit">Submit</button>
             </div>
         </form>
     </div>
-    <script src = "js/signup.js"></script>
 </body>
 </html>

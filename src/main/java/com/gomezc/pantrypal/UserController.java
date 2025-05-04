@@ -6,31 +6,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@RestController
+
+@Controller
 @RequestMapping("")
 public class UserController {
     private final Jdbc jdbc;
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
     public UserController(Jdbc jdbc) {
         this.jdbc = jdbc;
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password) {
-        User user = jdbc.getUser(email);
-
-        if (user == null || !user.getuPassword().equals(password)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                                 .body("Invalid email or password");
-        }
-
-        return ResponseEntity.ok(user);  
-    }
-
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestParam String firstName,
+    public String register(@RequestParam String firstName,
                                            @RequestParam String lastName,
                                            @RequestParam String email,
                                            @RequestParam String password,
@@ -39,9 +31,9 @@ public class UserController {
                                            @RequestParam(required = false) Integer weight,
                                            @RequestParam(required = false) Integer age,
                                            @RequestParam(required = false) String gender) {
+        log.info("Registering user");
         if (firstName == null || lastName == null || email == null || password == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                                 .body("First name, last name, email, and password are required");
+            return "First name, last name, email, and password are required";
         }
         try {
             jdbc.addUser(firstName, lastName, email, password, 
@@ -52,10 +44,11 @@ public class UserController {
                          gender != null ? gender : "");
         } 
         catch (Exception e) {            
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error registering user: " + e.getMessage());
+            return "Error registering user";
         }
 
-        return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully");
+        log.info("User registered successfully");
+        return "redirect:/";
     }
 
     @GetMapping("/user")
