@@ -22,6 +22,20 @@ public class Jdbc {
             .list();
     }
 
+    public List<Food> getPantryForUser(String email) {
+        String sql = """
+            SELECT f.*
+            FROM Pantry p
+            JOIN FoodItem f ON p.fName = f.fName
+            WHERE p.uEmail = ?
+        """;
+    
+        return jdbcClient.sql(sql)
+            .param(email)
+            .query(Food.class)
+            .list();
+    }    
+
     public List<Food> getCategoryItems(String category) {
         return jdbcClient.sql("SELECT * FROM FoodItem WHERE fCategory = ?")
             .params(List.of(category))
@@ -56,9 +70,9 @@ public class Jdbc {
             .update();
     }
 
-    public void addPantryItem(String pName, String uEmail, int quantity) {
-        jdbcClient.sql("INSERT INTO Pantry (pName, uEmail, pQuantity) VALUES (?, ?, ?)")
-            .params(List.of(pName, uEmail, quantity))
+    public void addPantryItem(String uEmail, String fName, int quantity) {
+        jdbcClient.sql("INSERT INTO Pantry (uEmail, fName, pQuantity) VALUES (?, ?, ?)")
+            .params(List.of(uEmail, fName, quantity))
             .update();
     }
 

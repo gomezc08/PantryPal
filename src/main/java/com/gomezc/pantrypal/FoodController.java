@@ -5,9 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -88,4 +90,16 @@ public class FoodController {
         foodJdbc.deleteFood(food);
         log.info("Deleted " + food + " from pantry.");
     }
+
+    // homepage.
+    @GetMapping("/home")
+    public String home(@RequestParam String email, Model model) {
+        User user = foodJdbc.getUser(email);
+        List<Food> pantryItems = foodJdbc.getPantryForUser(email);
+
+        model.addAttribute("user", user);
+        model.addAttribute("pantryItems", pantryItems);
+        return "home";
+    }
+
 }

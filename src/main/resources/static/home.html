@@ -1,15 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - PantryPal</title>
+    <style>
+        nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .food-item {
+            display: inline-block;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            text-align: center;
+            cursor: pointer;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
 </head>
-    <body>
-        <h1>Welcome to PantryPal, <span id="user-name"></span>!</h1>
-        <p>Email: <span id="user-email"></span></p>
-        <p>Age: <span id="user-age"></span></p>
-        <p>Gender: <span id="user-gender"></span></p>
-        <script src="js/home.js"></script>
-    </body>
+<body>
+    <nav>
+        <form action="/profile" method="get">
+            <button type="submit">Profile</button>
+        </form>
+        <form action="/add-food" method="get">
+            <button type="submit">Add Food</button>
+        </form>
+        <form action="/sort-food" method="get">
+            <button type="submit">Sort Food</button>
+        </form>
+    </nav>
+
+    <h1>Welcome to PantryPal, <span th:text="${user.uFirstName}">User</span>!</h1>
+    <p>Email: <span th:text="${user.uEmail}">email@example.com</span></p>
+    <p>Age: <span th:text="${user.uAge}">25</span></p>
+    <p>Gender: <span th:text="${user.uGender}">Female</span></p>
+
+    <h2>Your Pantry</h2>
+    <div>
+        <div th:each="item : ${pantryItems}" class="food-item" 
+             th:text="${item.fName}" 
+             th:onclick="'alert(\'Brand: ' + ${item.fBrand} + '\')'">
+        </div>
+    </div>
+</body>
 </html>

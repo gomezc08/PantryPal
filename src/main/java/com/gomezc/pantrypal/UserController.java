@@ -43,6 +43,7 @@ public class UserController {
 
     @GetMapping("/home")
     public String homeScreen() {
+        log.info("Homepage");
         return "home.html";
     }
 

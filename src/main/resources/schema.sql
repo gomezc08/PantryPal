@@ -60,11 +60,12 @@ CREATE TABLE IF NOT EXISTS UserDailyNutritionGoal (
 );
 
 CREATE TABLE IF NOT EXISTS Pantry (
-    pName VARCHAR(30) NOT NULL,
     uEmail VARCHAR(30) NOT NULL,
+    fName VARCHAR(30) NOT NULL,
     pQuantity INT,
-    PRIMARY KEY (pName, uEmail),
-    FOREIGN KEY (uEmail) REFERENCES User(uEmail)
+    PRIMARY KEY (uEmail, fName),
+    FOREIGN KEY (uEmail) REFERENCES User(uEmail),
+    FOREIGN KEY (fName) REFERENCES FoodItem(fName)
 );
 
 CREATE TABLE IF NOT EXISTS PantryCategory (
@@ -72,7 +73,6 @@ CREATE TABLE IF NOT EXISTS PantryCategory (
     category VARCHAR(30) NOT NULL,
     fName VARCHAR(30) NOT NULL,
     PRIMARY KEY (pName, category),
-    FOREIGN KEY (pName) REFERENCES Pantry(pName),
     FOREIGN KEY (fName) REFERENCES FoodItem(fName)
 );
 
