@@ -25,5 +25,5 @@ These instructions will get you a copy of the project up and running on your loc
    ```bash
    git clone git@github.com:gomezc08/PantryPal.git
    cd pantrypal
-   mvnw spring-boot:run
+   mvnw spring-boot::run
    ```
