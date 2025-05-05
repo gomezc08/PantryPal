@@ -90,16 +90,4 @@ public class FoodController {
         foodJdbc.deleteFood(food);
         log.info("Deleted " + food + " from pantry.");
     }
-
-    // homepage.
-    @GetMapping("/home")
-    public String home(@RequestParam String email, Model model) {
-        User user = foodJdbc.getUser(email);
-        List<Food> pantryItems = foodJdbc.getPantryForUser(email);
-
-        model.addAttribute("user", user);
-        model.addAttribute("pantryItems", pantryItems);
-        return "home";
-    }
-
 }

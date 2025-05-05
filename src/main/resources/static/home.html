@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <title>Dashboard - PantryPal</title>
     <style>
@@ -47,5 +47,12 @@
              th:onclick="'alert(\'Brand: ' + ${item.fBrand} + '\')'">
         </div>
     </div>
+    <h3>Test User Data:</h3>
+<ul>
+    <li th:text="'First: ' + ${user.uFirstName}">First name</li>
+    <li th:text="'Last: ' + ${user.uLastName}">Last name</li>
+    <li th:text="'Email: ' + ${user.uEmail}">Email</li>
+</ul>
+
 </body>
 </html>

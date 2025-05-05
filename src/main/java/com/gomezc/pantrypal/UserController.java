@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import java.util.List;
+import org.springframework.ui.Model;
 
 @Controller
 @RequestMapping("")
@@ -38,12 +39,37 @@ public class UserController {
             return "redirect:/?error=true";
         }
 
-        return "redirect:/home";
+        return "redirect:/home?email=" + email;
     }
 
-    @GetMapping("/home")
-    public String homeScreen() {
+    @GetMapping("/home") 
+    public String homeScreen(@RequestParam String email, Model model) {
         log.info("Homepage");
+        
+        if (email == null || email.isEmpty()) {
+            return "redirect:/";
+        }
+
+        List<Food> pantryItems = jdbc.getPantryForUser(email);
+        User user = jdbc.getUser(email);
+        
+        if (user == null) {
+            return "redirect:/";
+        }
+
+        // Debug logging
+        log.info("User data being passed to view - First Name: " + user.getuFirstName());
+        log.info("User data being passed to view - Email: " + user.getuEmail());
+        
+        // assigning model attributes for access in home.html.
+        model.addAttribute("user", user);
+        model.addAttribute("pantryItems", pantryItems);
+
+        log.info("User: " + user.getuEmail());
+        for(Food food : pantryItems) {
+            log.info(food.getfName());
+        }
+
         return "home.html";
     }
 
