@@ -26,7 +26,7 @@ public class UserController {
     @GetMapping("/")
     public String loginScreen() {
         log.info("Login Screen"); 
-        return "login.html";
+        return "login";
     }
 
     // Login page.
@@ -70,7 +70,7 @@ public class UserController {
             log.info(food.getfName());
         }
 
-        return "home.html";
+        return "dashboard";
     }
 
     // Sign up page.
@@ -106,7 +106,7 @@ public class UserController {
 
     @GetMapping("/signup")
     public String signupPage() {
-        return "signup.html"; 
+        return "signup"; 
     }
 
     // extra.

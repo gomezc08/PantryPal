@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Dashboard - PantryPal</title>
     <style>
@@ -42,17 +42,18 @@
 
     <h2>Your Pantry</h2>
     <div>
-        <div th:each="item : ${pantryItems}" class="food-item" 
-             th:text="${item.fName}" 
-             th:onclick="'alert(\'Brand: ' + ${item.fBrand} + '\')'">
+        <div th:each="item : ${pantryItems}"
+                class="food-item"
+                th:attr="onclick=|alert('Brand: ' + '${item.fBrand}')|">
+            <span th:text="${item.fName}">Food Name</span>
         </div>
     </div>
-    <h3>Test User Data:</h3>
-<ul>
-    <li th:text="'First: ' + ${user.uFirstName}">First name</li>
-    <li th:text="'Last: ' + ${user.uLastName}">Last name</li>
-    <li th:text="'Email: ' + ${user.uEmail}">Email</li>
-</ul>
 
+    <h3>Test User Data:</h3>
+    <ul>
+        <li th:text="'First: ' + ${user.uFirstName}">First name</li>
+        <li th:text="'Last: ' + ${user.uLastName}">Last name</li>
+        <li th:text="'Email: ' + ${user.uEmail}">Email</li>
+    </ul>
 </body>
 </html>
