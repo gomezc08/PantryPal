@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - PantryPal</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="main">
+        <h1>Welcome to PantryPal, <span th:text="${user.uFirstName}">User</span>!</h1>
+        <p>Email: <span th:text="${user.uEmail}">email@example.com</span></p>
+        <p>Age: <span th:text="${user.uAge}">25</span></p>
+        <p>Gender: <span th:text="${user.uGender}">Female</span></p>
+    </div>
+</body>
+</html>

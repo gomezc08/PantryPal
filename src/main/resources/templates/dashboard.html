@@ -1,59 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Dashboard - PantryPal</title>
-    <style>
-        nav {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .food-item {
-            display: inline-block;
-            margin: 10px;
-            padding: 20px;
-            border-radius: 50%;
-            background-color: #e0e0e0;
-            text-align: center;
-            cursor: pointer;
-            width: 100px;
-            height: 100px;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <nav>
-        <form action="/profile" method="get">
-            <button type="submit">Profile</button>
-        </form>
-        <form action="/add-food" method="get">
-            <button type="submit">Add Food</button>
-        </form>
-        <form action="/sort-food" method="get">
-            <button type="submit">Sort Food</button>
-        </form>
-    </nav>
+    <div class="main">
+        <nav>
+            <form action="/homepage/profilepage" method="post" style="display:inline;">
+                <input type="hidden" name="email" th:value="${user.uEmail}">
+                <button type="submit" style="text-decoration: none;">Profile</button>
+            </form>
+            <form action="/homepage/add-food" method="post" style="display:inline;">
+                <input type="hidden" name="email" th:value="${user.uEmail}">
+                <button type="submit" style="text-decoration: none;">Add Food</button>
+            </form>
+            <form action="/sort-food" method="get">
+                <input type="hidden" name="email" th:value="${user.uEmail}">
+                <button type="submit" style="text-decoration: none;">Sort Food</button>
+            </form>
+        </nav>
 
-    <h1>Welcome to PantryPal, <span th:text="${user.uFirstName}">User</span>!</h1>
-    <p>Email: <span th:text="${user.uEmail}">email@example.com</span></p>
-    <p>Age: <span th:text="${user.uAge}">25</span></p>
-    <p>Gender: <span th:text="${user.uGender}">Female</span></p>
-
-    <h2>Your Pantry</h2>
-    <div>
-        <div th:each="item : ${pantryItems}"
-                class="food-item"
-                th:attr="onclick=|alert('Brand: ' + '${item.fBrand}')|">
-            <span th:text="${item.fName}">Food Name</span>
+        <h2>Your Pantry</h2>
+        <div>
+            <div th:each="item : ${pantryItems}"
+                 class="food-item"
+                 th:attr="onclick=|alert('Brand: ' + '${item.fBrand}')|">
+                <span th:text="${item.fName}">Food Name</span>
+            </div>
         </div>
     </div>
-
-    <h3>Test User Data:</h3>
-    <ul>
-        <li th:text="'First: ' + ${user.uFirstName}">First name</li>
-        <li th:text="'Last: ' + ${user.uLastName}">Last name</li>
-        <li th:text="'Email: ' + ${user.uEmail}">Email</li>
-    </ul>
 </body>
 </html>

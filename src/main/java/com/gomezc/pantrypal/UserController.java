@@ -39,38 +39,7 @@ public class UserController {
             return "redirect:/?error=true";
         }
 
-        return "redirect:/home?email=" + email;
-    }
-
-    @GetMapping("/home") 
-    public String homeScreen(@RequestParam String email, Model model) {
-        log.info("Homepage");
-        
-        if (email == null || email.isEmpty()) {
-            return "redirect:/";
-        }
-
-        List<Food> pantryItems = jdbc.getPantryForUser(email);
-        User user = jdbc.getUser(email);
-        
-        if (user == null) {
-            return "redirect:/";
-        }
-
-        // Debug logging
-        log.info("User data being passed to view - First Name: " + user.getuFirstName());
-        log.info("User data being passed to view - Email: " + user.getuEmail());
-        
-        // assigning model attributes for access in home.html.
-        model.addAttribute("user", user);
-        model.addAttribute("pantryItems", pantryItems);
-
-        log.info("User: " + user.getuEmail());
-        for(Food food : pantryItems) {
-            log.info(food.getfName());
-        }
-
-        return "dashboard";
+        return "redirect:/homepage/home?email=" + email;
     }
 
     // Sign up page.
